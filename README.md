@@ -1,2 +1,2 @@
 # eris-vagrant
-Tools to ease development on the Eris Platform itself using Vagrant
+Tools to help with development workflow for those contributing to the Eris Platform using Vagrant.
