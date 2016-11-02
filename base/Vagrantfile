@@ -59,7 +59,7 @@ Vagrant.configure("2") do |config|
   # such as FTP and Heroku are also available. See the documentation at
   # https://docs.vagrantup.com/v2/push/atlas.html for more information.
   config.push.define "atlas" do |push|
-    push.app = "silasdavis/eris-host-base"
+    push.app = "monax/eris-host-base"
   end
 
   cli_path="github.com/eris-ltd/eris-cli"
@@ -86,8 +86,5 @@ Vagrant.configure("2") do |config|
     mkdir -p $GOPATH
     go get -d #{cli_path}
     cd $GOPATH/src/#{cli_path}
-    git checkout release_0.11
-    go install ./cmd/eris
-    eris init
   SHELL
 end
