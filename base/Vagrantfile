@@ -15,6 +15,7 @@ Vagrant.configure("2") do |config|
   # config.vm.box = "dduportal/boot2docker"
   # config.vm.box = "williamyeh/ubuntu-trusty64-docker"
   config.vm.box = "ubuntu/xenial64"
+  config.ssh.username = "ubuntu"
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -55,13 +56,6 @@ Vagrant.configure("2") do |config|
   # View the documentation for the provider you are using for more
   # information on available options.
 
-  # Define a Vagrant Push strategy for pushing to Atlas. Other push strategies
-  # such as FTP and Heroku are also available. See the documentation at
-  # https://docs.vagrantup.com/v2/push/atlas.html for more information.
-  config.push.define "atlas" do |push|
-    push.app = "monax/eris-host-base"
-  end
-
   cli_path="github.com/eris-ltd/eris-cli"
   # Enable provisioning with a shell script. Additional provisioners such as
   # Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
@@ -84,7 +78,6 @@ Vagrant.configure("2") do |config|
     echo "export GOPATH=$GOPATH" >> "$HOME/.profile"
     echo "export PATH=$GOPATH/bin:$PATH" >> "$HOME/.profile"
     mkdir -p $GOPATH
-    go get -d #{cli_path}
-    cd $GOPATH/src/#{cli_path}
+    go get -d #{cli_path}/cmd/eris
   SHELL
 end

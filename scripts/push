@@ -1,0 +1,10 @@
+#!/bin/bash
+BOX_BASE_NAME="eris-host"
+ORGANISATION="monax"
+PROVIDER="virtualbox"
+
+box_suffix="$1"
+box_name="$BOX_BASE_NAME-$box_suffix"
+access_token=`cat ~/.vagrant.d/data/vagrant_login_token`
+
+curl "https://atlas.hashicorp.com/api/v1/box/$ORGANISATION/$box_name/version/VERSION/provider/$PROVIDER/upload?access_token=$access_token"
