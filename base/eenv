@@ -1,0 +1,9 @@
+#!/bin/zsh
+export chain_id="$1" 
+export chain_dir="$HOME/.eris/chains/$chain_id"
+export addr=$(cat $chain_dir/addresses.csv | grep full_000 | cut -d ',' -f 1)
+# Chain emoji: 🔗
+# REENTRANT_PROMPT is checked by my .zshrc and if set overrides
+# the default oh-my-zsh prompt when zsh starts
+export REENTRANT_PROMPT="[$chain_id]$PROMPT"
+zsh
