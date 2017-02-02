@@ -3,7 +3,6 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "boxcutter/ubuntu1604"
 
-  cli_path="github.com/eris-ltd/eris-cli"
   config.vm.provision "shell", inline: <<-SHELL
     apt-get update
     apt-get install -y git gcc apt-transport-https ca-certificates linux-image-extra-$(uname -r) linux-image-extra-virtual
@@ -13,22 +12,9 @@ Vagrant.configure("2") do |config|
     apt-get install -y docker-engine
     usermod -aG docker vagrant
     service docker start
-    newgrp -
     curl -s https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz | tar -C /usr/local -xz
     ln -s /usr/local/go/bin/* /usr/local/bin/
   SHELL
 
-  config.vm.provision "shell", privileged: false, inline: <<-SHELL
-    export GOPATH=$HOME/go
-    echo "export GOPATH=$GOPATH" >> "$HOME/.profile"
-    echo "export PATH=$GOPATH/bin:$PATH" >> "$HOME/.profile"
-    mkdir -p $GOPATH
-    source "$HOME/.profile"
-    go get -d #{cli_path}
-    cd $GOPATH/src/#{cli_path}
-    git checkout release_0.12
-    go install ./cmd/eris
-    eris init
-    docker pull tutum/logrotate
-  SHELL
+  config.vm.provision "shell", privileged: false, path: "eris-install.sh"
 end
