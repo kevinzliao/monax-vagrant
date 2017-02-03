@@ -14,7 +14,6 @@ Vagrant.configure("2") do |config|
     service docker start
     curl -s https://storage.googleapis.com/golang/go1.7.3.linux-amd64.tar.gz | tar -C /usr/local -xz
     ln -s /usr/local/go/bin/* /usr/local/bin/
+    su --command "source /vagrant/eris-install.sh" vagrant
   SHELL
-
-  config.vm.provision "shell", privileged: false, path: "eris-install.sh"
 end
