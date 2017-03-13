@@ -7,7 +7,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.box = "debian/contrib-jessie64"
-  config.vm.provision "shell", inline: "run-parts /vagrant/provision/privileged"
+  config.vm.provision "shell", inline: "run-parts /vagrant/Vagrant/privileged"
 
   ["release_0.12", "release-0.16"].each do |branch|
     config.vm.define branch do |node|
@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
         env: {"BRANCH" => branch},
         # Use 'su' instead of running as a non-privileged user so that changes
         # to the user's new groups are picked up.
-        inline: "su --command 'run-parts /vagrant/provision' vagrant"
+        inline: "su --command 'run-parts /vagrant/Vagrant' vagrant"
     end
   end
 end
