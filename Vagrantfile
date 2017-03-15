@@ -7,6 +7,8 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.box = "debian/contrib-jessie64"
+  config.vm.network "private_network", type: "dhcp"
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
   config.vm.provision "shell", inline: "run-parts /vagrant/Vagrant/privileged"
 
   ["release_0.12", "release-0.16"].each do |branch|
