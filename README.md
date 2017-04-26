@@ -37,7 +37,7 @@ Once you have configured a state you would like to save from the host do the
 following (using v0.16.0 as our example branch):
 
 ```shell
-# Half VM to snapshot
+# Halt VM to snapshot
 vagrant halt v0.16.0
 # Create Vagrant package containing VM and metadata
 vagrant package v0.16.0
