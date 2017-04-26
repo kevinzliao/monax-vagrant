@@ -1,0 +1,9 @@
+#!/bin/sh -l
+set -o errexit
+set -o xtrace
+cli=github.com/monax/cli/cmd/monax
+go get -d $cli
+cd $GOPATH/src/$cli
+git checkout $TREEISH
+go install
+monax init --yes

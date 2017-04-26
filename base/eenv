@@ -1,6 +1,6 @@
 #!/bin/zsh
 export chain_id="$1" 
-export chain_dir="$HOME/.eris/chains/$chain_id"
+export chain_dir="$HOME/.monax/chains/$chain_id"
 export addr=$(cat $chain_dir/addresses.csv | grep full_000 | cut -d ',' -f 1)
 # Chain emoji: 🔗
 # REENTRANT_PROMPT is checked by my .zshrc and if set overrides
