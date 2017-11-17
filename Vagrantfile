@@ -9,7 +9,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "debian/contrib-jessie64"
   config.vm.provision "shell", inline: "run-parts /vagrant/Vagrant/privileged"
 
-  ["v0.12.0", "v0.16.0", "v0.17.0"].each do |treeish|
+  ["v0.12.0", "v0.16.0", "v0.17.0", "v0.18.0"].each do |treeish|
     config.vm.define treeish do |node|
       node.vm.provision "shell",
         env: {"TREEISH" => treeish},
